@@ -22,6 +22,36 @@ section {
     right: 10px;
 }
 
+#sobre {
+    position: relative;
+    overflow: hidden;
+
+    .d-flex.flex-column.fs-5.my-auto {
+        &::after {
+            content: '';
+            background-image: url('assets/quote.svg');
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: contain;
+            opacity: 1;
+
+            position: absolute;
+            top: 50%;
+            transform: translateY(-170px);
+
+            left: 5vw;
+
+            width: 500px;
+            height: 500px;
+            z-index: -1;
+
+            @media (max-width: 576px) {
+                display: none;
+            }
+        }
+    }
+}
+
 .app-background-secundario {
     background-color: $cor-background-1;
 }
