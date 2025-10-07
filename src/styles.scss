@@ -1,2 +1,50 @@
 @use 'bootstrap';
 @use 'bootstrap-icons';
+
+$cor-principal: #ec6afa;
+$cor-secundaria: #6d2bc2;
+$cor-hover: #5d0479;
+
+$cor-background-1: #6d2bc2;
+$cor-background-2: #242527;
+
+section {
+    display: flex;
+
+    min-height: 100vh;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.img-flex {
+    position: relative;
+    top: -20px;
+    right: 10px;
+}
+
+.app-background-secundario {
+    background-color: $cor-background-1;
+}
+
+.app-banner-text {
+    background: linear-gradient(90deg, rgba(236, 65, 173, 0.906), rgba(236, 200, 254, 0.925));
+    background-clip: text;
+    color: transparent;
+}
+
+.app-btn-principal {
+    background-color: $cor-principal;
+
+    &:hover {
+        background-color: $cor-hover;
+    }
+}
+
+.app-bg-foto {
+    background: linear-gradient(90deg, rgba(177, 61, 134, 0.906), rgba(210, 157, 236, 0.925));
+    border-radius: 33% 67% 53% 47% / 66% 41% 59% 34%;
+    height: 30rem;
+    margin-right: 3rem;
+    overflow: hidden;
+    width: 30rem;
+}
