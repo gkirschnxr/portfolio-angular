@@ -8,6 +8,39 @@ $cor-hover: #5d0479;
 $cor-background-1: #6d2bc2;
 $cor-background-2: #242527;
 
+.app-navbar {
+  background-color: rgba($color: $cor-background-1, $alpha: .9);
+  color: #fff;
+  transition: background-color .25s ease, color .25s ease, box-shadow .25s ease;
+  backdrop-filter: saturate(120%) blur(6px);
+
+  .nav-link,
+  .navbar-brand {
+    color: #fff;
+
+    &:hover { color: lighten(#fff, 10%); }
+  }
+
+  .navbar-toggler {
+    border-color: rgba(#fff, .25);
+  }
+
+  .navbar-toggler-icon {
+    filter: invert(100%);
+  }
+
+  &.nav-on-sobre {
+    background-color: $cor-background-2;
+    color: #fff;
+    box-shadow: none;
+    backdrop-filter: none;
+
+    .nav-link,
+    .navbar-brand { color: #fff; }
+    .nav-link:hover { color: lighten(#fff, 12%); }
+  }
+}
+
 section {
     display: flex;
 
@@ -25,6 +58,17 @@ section {
 #sobre {
     position: relative;
     overflow: hidden;
+    scroll-margin-top: 80px;
+
+    .sentinel-start, .sentinel-end {
+        position: absolute;
+        left: 0;
+        width: 1px;
+        height: 1px;
+        pointer-events: none;
+    }
+    .sentinel-start { top: 0; }
+    .sentinel-end   { bottom: 0; }
 
     .d-flex.flex-column.fs-5.my-auto {
         &::after {
@@ -51,6 +95,8 @@ section {
         }
     }
 }
+
+#sobre { scroll-margin-top: 80px; } 
 
 .app-background-secundario {
     background-color: $cor-background-1;

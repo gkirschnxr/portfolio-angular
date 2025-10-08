@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand-md navbar-expand-lg sticky-top app-background-secundario">
+<nav 
+  #nav
+  class="navbar navbar-expand-md navbar-expand-lg sticky-top app-navbar"
+  [class.nav-on-sobre]="navOnSobre"
+>
     <div class="container">
-
         <a class="navbar-brand fw-semibold" href="#">
             Portfólio
         </a>
@@ -72,7 +75,8 @@
   </div>
 </section>
 
-<section id="sobre">
+<section id="sobre" #sobreSec>
+  <span #sobreStart class="sentinel-start" aria-hidden="true"></span>
   <div class="container">
     <div class="d-flex flex-column fs-5 my-auto">
       <h2 class="display-5 fw-bold text-center mt-4">Sobre Mim</h2>
@@ -93,4 +97,5 @@
         </p>
     </div>
   </div>
+  <span #sobreEnd class="sentinel-end" aria-hidden="true"></span>
 </section>
