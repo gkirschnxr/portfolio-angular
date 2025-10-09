@@ -99,3 +99,29 @@
   </div>
   <span #sobreEnd class="sentinel-end" aria-hidden="true"></span>
 </section>
+
+<section 
+  id="habilidades" 
+  class="app-background-secundario d-flex justify-content-center align-items-center"
+  #sobreSec
+>
+  <div class="container my-5">
+    <h2 class="display-5 fw-bold text-center">Minhas Habilidades</h2>
+
+    <div class="row row-cols-1 row-cols-lg-2 g-5 mt-5 mx-2">
+      @for (item of itensHabilidades; track $index) {
+        <div class="d-flex align-items-center gap-4">
+          <span>
+            <i class="bi {{ item.icone }} fs-1"></i>
+          </span>
+
+          <div class="d-flex flex-column">
+            <label class="fs-4 fw-semibold">{{ item.titulo }}</label>
+
+            <small class="fs-5">{{ item.descricao }}</small>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

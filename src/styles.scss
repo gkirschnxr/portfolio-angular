@@ -1,5 +1,6 @@
-@use 'bootstrap';
-@use 'bootstrap-icons';
+@use 'bootstrap' as *;
+@use 'bootstrap-icons' as *;
+@use "sass:color";
 
 $cor-principal: #ec6afa;
 $cor-secundaria: #6d2bc2;
@@ -43,7 +44,6 @@ $cor-background-2: #242527;
 
 section {
     display: flex;
-
     min-height: 100vh;
     margin-top: auto;
     margin-bottom: auto;
@@ -56,47 +56,32 @@ section {
 }
 
 #sobre {
-    position: relative;
-    overflow: hidden;
-    scroll-margin-top: 80px;
+  position: relative;
+  overflow: hidden;
+  background-color: $cor-background-2;
 
-    .sentinel-start, .sentinel-end {
-        position: absolute;
-        left: 0;
-        width: 1px;
-        height: 1px;
-        pointer-events: none;
+  .d-flex.flex-column.fs-5.my-auto {
+    &::after {
+      content: '';
+      background-image: url('assets/quote.svg');
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: contain;
+      opacity: 1;
+
+      position: absolute;
+      top: 50%;
+      transform: translateY(-170px);
+      left: 5vw;
+
+      width: 500px;
+      height: 500px;
+      z-index: -1;
+
+      @media (max-width: 576px) { display: none; }
     }
-    .sentinel-start { top: 0; }
-    .sentinel-end   { bottom: 0; }
-
-    .d-flex.flex-column.fs-5.my-auto {
-        &::after {
-            content: '';
-            background-image: url('assets/quote.svg');
-            background-repeat: no-repeat;
-            background-position: left center;
-            background-size: contain;
-            opacity: 1;
-
-            position: absolute;
-            top: 50%;
-            transform: translateY(-170px);
-
-            left: 5vw;
-
-            width: 500px;
-            height: 500px;
-            z-index: -1;
-
-            @media (max-width: 576px) {
-                display: none;
-            }
-        }
-    }
+  }
 }
-
-#sobre { scroll-margin-top: 80px; } 
 
 .app-background-secundario {
     background-color: $cor-background-1;

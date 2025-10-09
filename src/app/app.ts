@@ -1,47 +1,76 @@
-import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+
+interface ItemHabilidade {
+  icone: string;
+  titulo: string;
+  descricao?: string;
+}
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 
-export class App implements AfterViewInit{
-  @ViewChild('nav',        { static: false }) navRef!: ElementRef<HTMLElement>;
-  @ViewChild('sobreSec',   { static: false }) sobreRef!: ElementRef<HTMLElement>;
-  @ViewChild('sobreStart', { static: false }) sobreStartRef!: ElementRef<HTMLElement>;
-  @ViewChild('sobreEnd',   { static: false }) sobreEndRef!: ElementRef<HTMLElement>;
+export class App implements AfterViewInit {
+  @ViewChild('nav', { static: false }) navRef?: ElementRef<HTMLElement>;
+  @ViewChild('sobreSec', { static: false }) sobreRef?: ElementRef<HTMLElement>;
 
-  public navOnSobre: boolean = false;
+  navOnSobre = false;
 
   ngAfterViewInit(): void {
-    const navH = this.navRef?.nativeElement?.offsetHeight ?? 64;
+    const navEl = this.navRef?.nativeElement;
+    const sobreEl = this.sobreRef?.nativeElement;
+    if (!navEl || !sobreEl) return;
 
-    // OBSERVER 1: ativa quando o topo do #sobre passa por baixo da navbar
-    const enterObserver = new IntersectionObserver(
-      ([e]) => { this.navOnSobre = !!e?.isIntersecting; },
+    const navH = navEl.offsetHeight || 64;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        this.navOnSobre = entry.isIntersecting;
+      },
       {
         root: null,
-        threshold: 0,                 // dispara assim que encosta
-        rootMargin: `-${navH}px 0px -100% 0px`, // “linha” no topo da navbar
+        threshold: 0.9 | 0.1,
+        rootMargin: `-${navH}px 0px 0px 0px`,
       }
     );
 
-    // OBSERVER 2: desativa quando o fim do #sobre sobe além da navbar
-    const leaveObserver = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) this.navOnSobre = false; },
-      {
-        root: null,
-        threshold: 0,
-        rootMargin: `0px 0px -${window.innerHeight - navH}px 0px`,
-        // Esse margin faz o sentinel do fim “tocar” o topo lógico ao aproximar da navbar
-      }
-    );
-
-    enterObserver.observe(this.sobreStartRef.nativeElement);
-    leaveObserver.observe(this.sobreEndRef.nativeElement);
+    io.observe(sobreEl);
   }
+
+  public itensHabilidades: ItemHabilidade [] = [
+    {
+      icone: 'bi-window-fullscreen',
+      titulo: 'Web Design',
+      descricao: `Design e desenvolvimento de sistemas web atraentes e responsivos.`,
+    },
+    {
+      icone: 'bi-server',
+      titulo: 'Aplicações Back-End',
+      descricao: `Desenvolvimento de sistemas robustos para solucionar problemas simples ou compplexos.`,
+    },
+    {
+      icone: 'bi-graph-up',
+      titulo: 'Testes Automatizados',
+      descricao: `Criação de testes automatizados que facilitam a manutenção e melhoram as entregas das aplicações.`,
+    },
+    {
+      icone: 'bi-wrench',
+      titulo: 'Engenharia de Software',
+      descricao: `Planejamento e execução de sistemas multi-camadas, integrando várias tecnologias de forma organizada e escalável.`,
+    },
+    {
+      icone: 'bi-people',
+      titulo: 'Liderança',
+      descricao: `Habilidade de liderar e tomar decisões técnicas em projetos em equipe.`,
+    },
+    {
+      icone: 'bi-building-up',
+      titulo: 'Implantação',
+      descricao: `Implantação e manutenção de sistemas em servidores VPS e em nuvem.`,
+    }
+  ];
 }
