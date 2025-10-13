@@ -1,0 +1,18 @@
+<section id="icones-habilidades" class="container my-5">
+  <div class="d-flex flex-column my-auto">
+    <h2 class="display-5 fw-bold text-center">Habilidades Técnicas</h2>
+
+    <p class="fs-5 mt-5 ps-3">
+      Aqui, voce poderá conhecer as principais habilidades que desenvolvi ao longo da minha jornada como desenvolvedor. Abaixo apresento as ferramentas, frameworks e tecnologias que utilizo.
+    </p>
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-5">
+      @for (iconeHabilidade of iconesHabilidades; track $index) {
+        <div class="d-flex flex-column align-items-center gap-2">
+          <img width="75" [src]="iconeHabilidade.imagem" [alt]="iconeHabilidade.titulo">
+          <span>{{ iconeHabilidade.titulo }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
